@@ -1,4 +1,4 @@
-const token = '5240583376:AAFfG-zLG80x9Tnfmf515G4IDKCXzmHs3yQ'
+const token = '5311073189:AAHlSx6chRR8Q9uFESZ-mt-mm6RIPqect-0'
 
 const TelegramBot = require('node-telegram-bot-api')
 
@@ -26,12 +26,10 @@ bot.on('message',msg=>{
       bot.sendMessage(user,'<i>Loading...</i>',{
          parse_mode:'HTML'
       })
-      console.log(msg.id)
       ;(async()=>{
          try {
             let response = await fetch(`https://instagram-downloader-download-instagram-videos-stories.p.rapidapi.com/index?url=${message}`,options)
             response = await response.json()
-            console.log(response)
             if(response.Type == 'Post-Image') {
                console.log(message);
                bot.sendPhoto(user,response.media,{
