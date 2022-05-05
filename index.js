@@ -1,4 +1,4 @@
-const token = '5311073189:AAHlSx6chRR8Q9uFESZ-mt-mm6RIPqect-0'
+const token = '5311073189:AAG7meA91SRjIYSObvOm5Gr9AW0QeiTHDsI'
 
 const TelegramBot = require('node-telegram-bot-api')
 
@@ -20,7 +20,7 @@ bot.on('message',msg=>{
       bot.sendMessage(user,`Salom Linkni Jo'taing`)   
    } 
 
-   const url = message.includes('instagram.com')
+   const url = message.includes('https://www.instagram.com')
 
    if(url) {
       bot.sendMessage(user,'<i>Loading...</i>',{
@@ -31,13 +31,14 @@ bot.on('message',msg=>{
             let response = await fetch(`https://instagram-downloader-download-instagram-videos-stories.p.rapidapi.com/index?url=${message}`,options)
             response = await response.json()
             if(response.Type == 'Post-Image') {
-               console.log(message);
                bot.sendPhoto(user,response.media,{
                   parse_mode:'HTML',
-                  caption:'👉 Download by @instagram'
+                  caption:'👉 Download by @MediaHorseBot'
                })
             } else if(response.Type == 'Post-Video') {
-               bot.sendVideo(user,response.media)
+               bot.sendVideo(user,response.media,{
+                  caption:'👉 Download by @MediaHorseBot'
+               })
             } else {
                bot.sendMessage(user,'Nomalum buyruq')
             }
